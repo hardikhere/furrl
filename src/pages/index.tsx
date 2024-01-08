@@ -1,118 +1,328 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import Tree from "@/components/Tree";
+import { IValue, constructTree } from "@/utils";
+import { useRef } from "react";
 
-const inter = Inter({ subsets: ['latin'] })
+export default function Home({ data }: { data: IValue[] }) {
+  const rootNode = useRef(constructTree(data));
 
-export default function Home() {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <>
+      <h1 className="text-sky-400 text-3xl">Furrl Assignment Hardik</h1>
+      <div className="flex items-center justify-center">
+        <Tree
+          node={rootNode.current}
+          parentPos={{ x: 0, y: 0 }}
+          marginLeft={0}
         />
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </>
+  );
 }
+
+export const getServerSideProps = () => {
+  return {
+    props: {
+      data: [
+        {
+          name: "Jennifer Malone",
+          email: "evansbrittany@example.org",
+          designation: "Insurance account manager",
+          reporting_manager: "michaelyork@example.com",
+        },
+        {
+          name: "Jonathan King",
+          email: "christopher03@example.org",
+          designation: "Telecommunications researcher",
+          reporting_manager: "michaelyork@example.com",
+        },
+        {
+          name: "Mary Wyatt",
+          email: "donnabell@example.org",
+          designation: "Medical sales representative",
+          reporting_manager: "christopher03@example.org",
+        },
+        {
+          name: "Pamela Ortega MD",
+          email: "christy26@example.org",
+          designation: "Chiropodist",
+          reporting_manager: "christopher03@example.org",
+        },
+        {
+          name: "Lori Hall",
+          email: "melissamccullough@example.org",
+          designation: "Engineer, electronics",
+          reporting_manager: "christy26@example.org",
+        },
+        {
+          name: "Megan Wilson",
+          email: "kristinthompson@example.org",
+          designation: "Therapeutic radiographer",
+          reporting_manager: "christopher03@example.org",
+        },
+        {
+          name: "Christine Matthews",
+          email: "ithomas@example.net",
+          designation: "Social researcher",
+          reporting_manager: "kristinthompson@example.org",
+        },
+        {
+          name: "Nathan Hess",
+          email: "urichards@example.net",
+          designation: "Set designer",
+          reporting_manager: "ithomas@example.net",
+        },
+        {
+          name: "Kyle Bryant",
+          email: "angela80@example.net",
+          designation: "Engineer, manufacturing",
+          reporting_manager: "urichards@example.net",
+        },
+        {
+          name: "Brenda Green",
+          email: "qkeith@example.net",
+          designation: "Further education lecturer",
+          reporting_manager: "angela80@example.net",
+        },
+        {
+          name: "Tamara Burgess",
+          email: "xphillips@example.net",
+          designation: "Charity officer",
+          reporting_manager: "qkeith@example.net",
+        },
+        {
+          name: "Arthur Herman",
+          email: "kayla02@example.org",
+          designation: "Optometrist",
+          reporting_manager: "xphillips@example.net",
+        },
+        {
+          name: "Dr. Matthew Neal MD",
+          email: "wendymccullough@example.com",
+          designation: "Oncologist",
+          reporting_manager: "ithomas@example.net",
+        },
+        {
+          name: "Kerry Walsh",
+          email: "zpierce@example.org",
+          designation: "Theatre stage manager",
+          reporting_manager: "ithomas@example.net",
+        },
+        {
+          name: "Mary Lucas",
+          email: "kathleencoleman@example.org",
+          designation: "Production engineer",
+          reporting_manager: "zpierce@example.org",
+        },
+        {
+          name: "Katie Schwartz",
+          email: "vaughnlisa@example.com",
+          designation: "Teacher, early years/pre",
+          reporting_manager: "ithomas@example.net",
+        },
+        {
+          name: "Benjamin Alexander",
+          email: "youngashley@example.net",
+          designation: "Freight forwarder",
+          reporting_manager: "vaughnlisa@example.com",
+        },
+        {
+          name: "Michael Nunez",
+          email: "anna04@example.org",
+          designation: "Teaching laboratory technician",
+          reporting_manager: "youngashley@example.net",
+        },
+        {
+          name: "Taylor Lopez",
+          email: "ethompson@example.org",
+          designation: "Private music teacher",
+          reporting_manager: "anna04@example.org",
+        },
+        {
+          name: "Darrell Munoz",
+          email: "jgarza@example.com",
+          designation: "Surveyor, land/geomatics",
+          reporting_manager: "ethompson@example.org",
+        },
+        {
+          name: "Mark Oneill DDS",
+          email: "erinmcbride@example.com",
+          designation: "Naval architect",
+          reporting_manager: "jgarza@example.com",
+        },
+        {
+          name: "Paul Morgan",
+          email: "obrown@example.com",
+          designation: "Textile designer",
+          reporting_manager: "erinmcbride@example.com",
+        },
+        {
+          name: "Sara Mcmillan",
+          email: "danielle99@example.net",
+          designation: "Interior and spatial designer",
+          reporting_manager: "obrown@example.com",
+        },
+        {
+          name: "Zachary Mcguire",
+          email: "hornecynthia@example.net",
+          designation: "Sport and exercise psychologist",
+          reporting_manager: "danielle99@example.net",
+        },
+        {
+          name: "Jared May",
+          email: "merrittvalerie@example.net",
+          designation: "Designer, television/film set",
+          reporting_manager: "hornecynthia@example.net",
+        },
+        {
+          name: "Melissa Acevedo",
+          email: "hgregory@example.com",
+          designation: "Chief of Staff",
+          reporting_manager: "merrittvalerie@example.net",
+        },
+        {
+          name: "Francisco Goodman",
+          email: "jboyd@example.org",
+          designation: "Visual merchandiser",
+          reporting_manager: "hgregory@example.com",
+        },
+        {
+          name: "Matthew Levy",
+          email: "mackenzieterry@example.org",
+          designation: "Hotel manager",
+          reporting_manager: "jboyd@example.org",
+        },
+        {
+          name: "David Jordan",
+          email: "michaelyork@example.com",
+          designation: "Energy engineer",
+        },
+        {
+          name: "Daniel Stevenson",
+          email: "dana72@example.com",
+          designation: "Hydrographic surveyor",
+          reporting_manager: "mackenzieterry@example.org",
+        },
+        {
+          name: "Cindy Cox",
+          email: "hwhite@example.net",
+          designation: "Orthoptist",
+          reporting_manager: "dana72@example.com",
+        },
+        {
+          name: "William Miller",
+          email: "tamara84@example.net",
+          designation: "Designer, multimedia",
+          reporting_manager: "hwhite@example.net",
+        },
+        {
+          name: "Kevin Hoffman",
+          email: "carl87@example.com",
+          designation: "Police officer",
+          reporting_manager: "tamara84@example.net",
+        },
+        {
+          name: "Michele Durham",
+          email: "april82@example.org",
+          designation: "Site engineer",
+          reporting_manager: "carl87@example.com",
+        },
+        {
+          name: "Matthew Gould",
+          email: "dunnashley@example.net",
+          designation: "Conservation officer, nature",
+          reporting_manager: "april82@example.org",
+        },
+        {
+          name: "Sarah Guzman",
+          email: "tdunn@example.com",
+          designation: "Drilling engineer",
+          reporting_manager: "dunnashley@example.net",
+        },
+        {
+          name: "Kristen Pitts",
+          email: "lindseyrodriguez@example.org",
+          designation: "Dietitian",
+          reporting_manager: "tdunn@example.com",
+        },
+        {
+          name: "Alex Smith",
+          email: "xhall@example.net",
+          designation: "Set designer",
+          reporting_manager: "lindseyrodriguez@example.org",
+        },
+        {
+          name: "Alicia Patton",
+          email: "josephwhite@example.com",
+          designation: "Textile designer",
+          reporting_manager: "xhall@example.net",
+        },
+        {
+          name: "Carol Pope",
+          email: "keithwinters@example.net",
+          designation: "Editorial assistant",
+          reporting_manager: "josephwhite@example.com",
+        },
+        {
+          name: "Anthony Li",
+          email: "oreynolds@example.net",
+          designation: "Insurance risk surveyor",
+          reporting_manager: "keithwinters@example.net",
+        },
+        {
+          name: "Warren Hunt",
+          email: "cisneroscaitlin@example.com",
+          designation: "Buyer, industrial",
+          reporting_manager: "oreynolds@example.net",
+        },
+        {
+          name: "Denise Stevenson",
+          email: "mbowen@example.com",
+          designation: "Health visitor",
+          reporting_manager: "cisneroscaitlin@example.com",
+        },
+        {
+          name: "Darrell Brooks",
+          email: "katherine59@example.org",
+          designation: "Cartographer",
+          reporting_manager: "mbowen@example.com",
+        },
+        {
+          name: "Natasha Griffin",
+          email: "andrechaney@example.com",
+          designation: "Therapist, drama",
+          reporting_manager: "katherine59@example.org",
+        },
+        {
+          name: "Kristin Wagner",
+          email: "mcooper@example.net",
+          designation: "Neurosurgeon",
+          reporting_manager: "andrechaney@example.com",
+        },
+        {
+          name: "Erin Freeman",
+          email: "victoriawoods@example.com",
+          designation: "Scientist, biomedical",
+          reporting_manager: "mcooper@example.net",
+        },
+        {
+          name: "Tamara Miller",
+          email: "scottbradley@example.com",
+          designation: "Engineer, civil (contracting)",
+          reporting_manager: "victoriawoods@example.com",
+        },
+        {
+          name: "Mrs. Pamela Mcbride",
+          email: "neallisa@example.org",
+          designation: "Education administrator",
+          reporting_manager: "scottbradley@example.com",
+        },
+        {
+          name: "Lori Martin",
+          email: "thompsonbrent@example.net",
+          designation: "Estate manager/land agent",
+          reporting_manager: "neallisa@example.org",
+        },
+      ],
+    },
+  };
+};
