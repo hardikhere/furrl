@@ -1,4 +1,3 @@
-import DynamicArrow from "@/components/Arrow";
 import Card from "@/components/Card";
 import { TreeNode } from "@/utils";
 import React, { useMemo, useRef } from "react";
